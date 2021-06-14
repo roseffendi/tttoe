@@ -143,9 +143,21 @@ $(document).ready(function () {
     var rows = generateRows(grid);
     var winningConditons = generateWinningConditons(grid);
 
+    $('#grid').val(grid);
     $('#game').append(rows);
 
-    $('#game li').click(function () {
+    $('#grid').change(function(){
+        grid = parseInt($(this).val());
+
+        rows = generateRows(grid);
+        winningConditons = generateWinningConditons(grid);
+
+        $('#game').html(rows);
+
+        restart();
+    });
+
+    $('#game').on('click', 'li', function () {
         if($(this).hasClass('disable')) {
             alert('Already selected');
 
